@@ -1,0 +1,17 @@
+{
+  "extends": "@react-native/typescript-config/tsconfig.json",
+  "compilerOptions": {
+    "module": "ESNext",
+    /* Visit https://aka.ms/tsconfig.json to read more about this file */
+
+    /* Completeness */
+    "skipLibCheck": true /* Skip type checking all .d.ts files. */,
+
+    /* 配置基础地址 */
+    "baseUrl": ".",
+    /* 配置路径别名 */
+    "paths": {
+      "@/*": ["src/*"]
+    }
+  }
+}
