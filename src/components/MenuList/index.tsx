@@ -1,13 +1,11 @@
 import {TouchableHighlight} from 'react-native';
 import {MenuListType, ListMenuItem} from './type';
 import {generateUUid} from '@/utils';
-import {Box, Card, Text, useTheme} from 'native-base';
+import {Box, Card, Text, useTheme, useToast} from 'native-base';
 import AigcIcon from '../AigcIcon';
 
-export default function MenuList(params: {
-  dataSource: MenuListType[];
-  toast?: any;
-}) {
+export default function MenuList(params: {dataSource: MenuListType[]}) {
+  const toast = useToast();
   const theme = useTheme();
   const MenuItem = ({list}: {list: ListMenuItem[]}) =>
     list.map(item => {
@@ -16,7 +14,9 @@ export default function MenuList(params: {
           key={generateUUid()}
           underlayColor={theme.colors.coolGray[100]}
           onPress={() => {
-            item.onPress(item, params.toast);
+            if (item.onPress) {
+              item.onPress(item, toast);
+            }
           }}>
           <Box p={'0'} pb={'0'} w={'full'}>
             <Box
@@ -26,7 +26,7 @@ export default function MenuList(params: {
               pl={'2'}
               borderBottomWidth={'1'}
               borderBottomStyle={'groove'}
-              borderBottomColor={'gray.100'}
+              borderBottomColor={'coolGray.200'}
               alignContent={'center'}
               alignItems={'center'}>
               <AigcIcon

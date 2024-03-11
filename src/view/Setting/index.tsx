@@ -26,14 +26,13 @@ const initData = [
   },
 ];
 export default function Setting() {
-  const toast = useToast();
   const initListMenu: MenuListType[] = [
     {title: '基本操作', menuItemList: initData},
   ];
   const [list, setList] = useState<MenuListType[]>(initListMenu);
   return (
     <SafeAreaView>
-      <ListMenu dataSource={list} toast={toast}></ListMenu>
+      <ListMenu dataSource={list}></ListMenu>
     </SafeAreaView>
   );
 }
