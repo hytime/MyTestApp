@@ -1,11 +1,13 @@
 import AigcIcon from '@/components/AigcIcon';
+import ListMenu from '@/components/MenuList';
 import {generateUUid} from '@/utils';
 import {removeItem} from '@/utils/asyncStorage';
 import {YG_CONTENT} from '@/utils/const';
 import {showInfoToast, showSuccessToast} from '@/utils/toast';
-import {Box, Card, Container, Text, useTheme, useToast} from 'native-base';
+import {Box, Card, Container, Text, useToast} from 'native-base';
 import {useState} from 'react';
-import {SafeAreaView, TouchableHighlight} from 'react-native';
+import {SafeAreaView} from 'react-native';
+import {MenuListType} from '@/components/MenuList/type';
 const initData = [
   {
     title: '清除数据',
@@ -24,49 +26,14 @@ const initData = [
   },
 ];
 export default function Setting() {
-  const theme = useTheme();
   const toast = useToast();
-  const [list, setList] = useState(initData);
+  const initListMenu: MenuListType[] = [
+    {title: '基本操作', menuItemList: initData},
+  ];
+  const [list, setList] = useState<MenuListType[]>(initListMenu);
   return (
     <SafeAreaView>
-      <Text m={'2'} fontSize={'md'}>
-        基本操作
-      </Text>
-      <Card backgroundColor={'white'} mx={'0'} p={0}>
-        {list.map(item => {
-          return (
-            <TouchableHighlight
-              key={generateUUid()}
-              underlayColor={theme.colors.coolGray[100]}
-              onPress={() => {
-                item.onPress(item, toast);
-              }}>
-              <Box p={'0'} pb={'0'} w={'full'}>
-                <Box
-                  w={'full'}
-                  flexDir={'row'}
-                  py={'15'}
-                  pl={'2'}
-                  borderBottomWidth={'1'}
-                  borderBottomStyle={'groove'}
-                  borderBottomColor={'gray.100'}
-                  alignContent={'center'}
-                  alignItems={'center'}>
-                  <AigcIcon
-                    size="auto"
-                    fontSize={'md'}
-                    iconName={item.icon}></AigcIcon>
-                  <Box ml={'1'}>
-                    <Text fontSize={'md'} color={'gray.900'}>
-                      {item.title}
-                    </Text>
-                  </Box>
-                </Box>
-              </Box>
-            </TouchableHighlight>
-          );
-        })}
-      </Card>
+      <ListMenu dataSource={list} toast={toast}></ListMenu>
     </SafeAreaView>
   );
 }

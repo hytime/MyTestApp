@@ -4,6 +4,7 @@ import {Center, HStack, IconButton, Text} from 'native-base';
 import AigcIcon from '@/components/AigcIcon';
 import {tabBars} from '@/utils/tabBar.config';
 import {useNavigation} from '@react-navigation/native';
+import {position} from 'native-base/lib/typescript/theme/styled-system';
 
 const Tab = createBottomTabNavigator();
 
@@ -17,6 +18,7 @@ export default function AigcTabBar() {
         tabBarInactiveTintColor: '#000000',
         headerPressColor: '#1296db',
         headerTintColor: '#000000',
+        tabBarStyle: {position: 'relative', bottom: 0},
       })}>
       {tabBars.map(item => {
         return (
