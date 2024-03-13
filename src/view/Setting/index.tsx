@@ -5,7 +5,7 @@ import {removeItem} from '@/utils/asyncStorage';
 import {YG_CONTENT} from '@/utils/const';
 import {showInfoToast, showSuccessToast} from '@/utils/toast';
 import {Box, Card, Container, Text, useToast} from 'native-base';
-import {useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import {SafeAreaView} from 'react-native';
 import {MenuListType} from '@/components/MenuList/type';
 const initData = [
@@ -29,7 +29,10 @@ export default function Setting() {
   const initListMenu: MenuListType[] = [
     {title: '基本操作', menuItemList: initData},
   ];
-  const [list, setList] = useState<MenuListType[]>(initListMenu);
+  const [list, setList] = useState<MenuListType[]>();
+  useEffect(() => {
+    setList(initListMenu);
+  }, []);
   return (
     <SafeAreaView>
       <ListMenu dataSource={list}></ListMenu>

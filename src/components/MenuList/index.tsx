@@ -4,7 +4,9 @@ import {generateUUid} from '@/utils';
 import {Box, Card, Text, useTheme, useToast} from 'native-base';
 import AigcIcon from '../AigcIcon';
 
-export default function MenuList(params: {dataSource: MenuListType[]}) {
+export default function MenuList(params: {
+  dataSource: MenuListType[] | undefined;
+}) {
   const toast = useToast();
   const theme = useTheme();
   const MenuItem = ({list}: {list: ListMenuItem[]}) =>
@@ -49,7 +51,7 @@ export default function MenuList(params: {dataSource: MenuListType[]}) {
       {params.dataSource.map(item => (
         <Box key={generateUUid()} w={'100%'}>
           <Text m={'2'} fontSize={'md'}>
-            {item.title}
+            {item.title ? item.title : ''}
           </Text>
           <Card backgroundColor={'white'} mx={'0'} p={0}>
             <MenuItem list={item.menuItemList} />

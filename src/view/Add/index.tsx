@@ -16,6 +16,7 @@ import {useCallback, useEffect, useState} from 'react';
 import {
   Keyboard,
   Platform,
+  SafeAreaView,
   StyleSheet,
   TouchableWithoutFeedback,
 } from 'react-native';
@@ -54,48 +55,50 @@ export default function Add() {
     // console.log('con', content);
   }, [content, title]);
   return (
-    <KeyboardAvoidingView
-      behavior={Platform.OS == 'ios' ? 'padding' : 'height'}
-      style={styles.addView}>
-      <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
-        <Card m={'3'} p={2} backgroundColor={'white'}>
-          <Box
-            flexDirection={'row'}
-            alignContent={'center'}
-            alignSelf={'center'}
-            alignItems={'center'}>
-            <Text flex={1} fontSize={'sm'} size={'auto'} fontWeight={'bold'}>
-              标题：
-            </Text>
-            <Box flex={5}>
-              <Input
-                variant={'underlined'}
-                value={title}
-                fontWeight={'bold'}
-                fontSize={'sm'}
-                onChangeText={onInputTitle}></Input>
+    <SafeAreaView>
+      <KeyboardAvoidingView
+        behavior={Platform.OS == 'ios' ? 'padding' : 'height'}
+        style={styles.addView}>
+        <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
+          <Card m={'3'} p={2} backgroundColor={'white'}>
+            <Box
+              flexDirection={'row'}
+              alignContent={'center'}
+              alignSelf={'center'}
+              alignItems={'center'}>
+              <Text flex={1} fontSize={'sm'} size={'auto'} fontWeight={'bold'}>
+                标题：
+              </Text>
+              <Box flex={5}>
+                <Input
+                  variant={'underlined'}
+                  value={title}
+                  fontWeight={'bold'}
+                  fontSize={'sm'}
+                  onChangeText={onInputTitle}></Input>
+              </Box>
             </Box>
-          </Box>
 
-          <Box flexDirection={'column'} mb={'1.5'}>
-            <Text fontWeight={'bold'}>内容：</Text>
-            <TextArea
-              autoCompleteType
-              placeholder="请输入内容"
-              h={'2/3'}
-              w={'100%'}
-              value={content}
-              onChangeText={onInputContent}
-            />
-            <Box marginTop={'4'}>
-              <Button w={'100%'} onPress={onYgPress}>
-                添加
-              </Button>
+            <Box flexDirection={'column'} mb={'1.5'}>
+              <Text fontWeight={'bold'}>内容：</Text>
+              <TextArea
+                autoCompleteType
+                placeholder="请输入内容"
+                h={'2/3'}
+                w={'100%'}
+                value={content}
+                onChangeText={onInputContent}
+              />
+              <Box marginTop={'4'}>
+                <Button w={'100%'} onPress={onYgPress}>
+                  添加
+                </Button>
+              </Box>
             </Box>
-          </Box>
-        </Card>
-      </TouchableWithoutFeedback>
-    </KeyboardAvoidingView>
+          </Card>
+        </TouchableWithoutFeedback>
+      </KeyboardAvoidingView>
+    </SafeAreaView>
   );
 }
 const styles = StyleSheet.create({addView: {marginBottom: 50}});

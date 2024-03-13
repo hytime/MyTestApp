@@ -3,6 +3,7 @@ import AigcIcon from '@/components/AigcIcon';
 import Home from '@/view/Home';
 import Mine from '@/view/Mine';
 import AddScreen from '@/view/Add';
+import React from 'react';
 export const tabBars: AigcTabBarItem[] = [
   {
     title: '首页',
@@ -30,6 +31,7 @@ export const tabBars: AigcTabBarItem[] = [
   {
     title: '我的',
     key: 'mine',
+    showHeder: false,
     component: Mine,
     icon: <AigcIcon iconName={'\ue617'} fontSize={20} />,
     activeIcon: (

@@ -9,4 +9,5 @@ export type AigcTabBarItem = {
   component: any;
   activeColor?: string;
   inActiveColor?: string;
+  showHeder?: boolean;
 };

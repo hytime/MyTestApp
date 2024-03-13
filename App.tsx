@@ -9,12 +9,13 @@ import React from 'react';
 // import StackRouter from './components/StackRouter';
 
 import {NavigationContainer} from '@react-navigation/native';
-import {NativeBaseProvider} from 'native-base';
+import {NativeBaseProvider, StatusBar} from 'native-base';
 import AigcTabBar from '@/components/AigcTabBar';
 
 import {theme} from '@/utils';
 import {tabBars} from '@/utils/tabBar.config';
-import StackRouter from '@/components/StackRouter';
+import StackRouter from '@/router/StackRouter';
+import {SafeAreaProvider} from 'react-native-safe-area-context';
 const config = {
   dependencies: {
     // For Expo projects (Bare or managed workflow)
@@ -29,9 +30,9 @@ function App(): React.JSX.Element {
     //
     <>
       <NativeBaseProvider theme={theme} config={config}>
-        <NavigationContainer>
+        <SafeAreaProvider>
           <StackRouter />
-        </NavigationContainer>
+        </SafeAreaProvider>
       </NativeBaseProvider>
     </>
   );

@@ -7,6 +7,6 @@ export type ListMenuItem = {
     | any;
 };
 export type MenuListType = {
-  title: string;
-  menuItemList: ListMenuItem[];
+  title?: string;
+  menuItemList: undefined | ListMenuItem[];
 };
