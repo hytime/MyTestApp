@@ -10,4 +10,7 @@ export type AigcTabBarItem = {
   activeColor?: string;
   inActiveColor?: string;
   showHeder?: boolean;
+  headerLeft?: (props: any) => any;
+  headerRight?: (props: any) => any;
+  headerTitle?: (props: any) => any;
 };

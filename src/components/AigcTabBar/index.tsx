@@ -1,16 +1,7 @@
 import React from 'react';
 import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
-import {
-  Box,
-  Center,
-  HStack,
-  IconButton,
-  StatusBar,
-  Text,
-  View,
-  useTheme,
-} from 'native-base';
-import AigcIcon from '@/components/AigcIcon';
+import {Center, Text, useTheme} from 'native-base';
+// import AigcIcon from '@/components/AigcIcon';
 import {tabBars} from '@/utils/tabBar.config';
 const Tab = createBottomTabNavigator();
 
@@ -35,7 +26,19 @@ export default function AigcTabBar() {
             component={item.component}
             options={{
               headerShown: false,
-
+              headerLeft: props => {
+                return item.headerLeft ? <>{item.headerLeft(props)}</> : <></>;
+              },
+              headerRight: props => {
+                return item.headerLeft ? <>{item.headerLeft(props)}</> : <></>;
+              },
+              headerTitle: props => {
+                return item.headerTitle ? (
+                  <>{item.headerTitle(props)}</>
+                ) : (
+                  <></>
+                );
+              },
               tabBarLabel: ({color}) => {
                 return (
                   <Center>
